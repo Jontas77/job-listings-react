@@ -36,9 +36,9 @@ const Details = ({
           {recent ? <p className="recent">NEW!</p> : null}
           {featured ? <p className="featured">FEATURED</p> : null}
         </div>
-        
-          <h4 className="position">{position}</h4>
-        
+
+        <h4 className="position">{position}</h4>
+
         <div className="details2">
           <small> {postedAt} </small>
           <small> {contract} </small>
@@ -46,6 +46,8 @@ const Details = ({
         </div>
       </div>
       <div className="details3">
+        <button onClick={() => handleFilter()}>{role}</button>
+        <button onClick={() => handleFilter()}>{level}</button>
         {[...languages, ...tools].map((skill) => (
           <JobSkills skill={skill} />
         ))}

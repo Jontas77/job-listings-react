@@ -4,7 +4,7 @@ import Details from "./Details";
 
 const JobList = ({ list, filter }) => {
   const {logo, company, featured, position, role, level, postedAt, contract, location, languages, tools, id} = list;
-  const cssRules = `bg-white ${featured ? 'featured-item' : ''} job-container`;
+  const cssRules = `${featured ? 'featured-item' : ''} job-container`;
   
     return (
         <div className={cssRules} >
