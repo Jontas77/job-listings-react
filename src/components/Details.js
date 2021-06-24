@@ -12,21 +12,23 @@ const Details = ({
   location,
   languages,
   tools,
-  filterFn,
-  id
+  filterFn
 }) => {
 
   const handleFilter = (skill) => {
     filterFn(skill);
   };
 
-  const JobSkills = ({ skill }) => {
-    return (
-      <div className="skills">
-        <button onClick={() => handleFilter(skill)}>{skill}</button>
-      </div>
-    );
-  };
+ 
+  const langAndToolsArr = [role, level];
+
+  if (tools) {
+    langAndToolsArr.push(...tools);
+  }
+
+  if (languages) {
+    langAndToolsArr.push(...languages);
+  }
 
   return (
     <>
@@ -38,22 +40,34 @@ const Details = ({
         </div>
 
         <h4 className="position">{position}</h4>
-
-        <div className="details2">
-          <small> {postedAt} </small>
-          <small> {contract} </small>
-          <small> {location} </small>
-        </div>
+        <p className="details2">
+          {postedAt} · {contract} · {location}
+        </p>
       </div>
       <div className="details3">
-        <button onClick={() => handleFilter()}>{role}</button>
-        <button onClick={() => handleFilter()}>{level}</button>
-        {[...languages, ...tools].map((skill) => (
-          <JobSkills skill={skill} />
-        ))}
+        {langAndToolsArr
+          ? langAndToolsArr.map((arr, idx) => (
+              <span className="tools" key={idx} onClick={() => handleFilter(arr)}>
+                {arr}
+              </span>
+            ))
+          : ""}
       </div>
     </>
   );
 };
 
 export default Details;
+
+// {[...languages, ...tools].map((skill, idx) => (
+// <JobSkills skill={skill} key={idx} />
+// ))}
+
+ // const JobSkills = ({ skill }) => {
+  //   return (
+  //     <div className="skills">
+  //       <button onClick={() => handleFilter(skill)}>{skill}</button>
+  //     </div>
+  //   );
+  // };
+  
